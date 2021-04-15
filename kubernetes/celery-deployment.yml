@@ -1,29 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-dummy-web
+  name: app-dummy-celery
 spec:
   selector:
     matchLabels:
-      app: app-dummy-web
+      app: app-dummy-celery
   replicas: 1
   template:
     metadata:
       labels:
-        app: app-dummy-web
+        app: app-dummy-celery
     spec:
       containers:
-      - name: webapp
+      - name: celery
         env: 
         - name: APP_MODE
           valueFrom:
             configMapKeyRef:
               name: app-dummy-config-map
-              key: WEB_APP_MODE
+              key: CELERY_APP_MODE
         image: camilortte/djangotestkubernetes:latest
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
-        ports:
-        - containerPort: 8080

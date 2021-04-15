@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-dummy-config-map
+data:
+  WEB_APP_MODE: api
+  CELERY_APP_MODE: celery

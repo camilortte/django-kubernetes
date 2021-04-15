@@ -129,3 +129,11 @@ CACHES = {
         }
     }
 }
+
+
+# CELERY CONF
+REDIS_PASSWORD = os.getenv('REDIS_PASSWORD', '')    
+REDIS_HOST = os.getenv('REDIS_HOST', 'redis')
+REDIS_PORT = os.getenv('REDIS_PORT', '6379')
+REDIS_DB = os.getenv('REDIS_DB', '2')
+CELERY_BROKER_URL = f"redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}"

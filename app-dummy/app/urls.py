@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('save-in-redis', views.create_in_redis, name='create_in_redis'),
     path('get-from-redis', views.get_from_redis, name='get_from_redis'),
+    path('celery-task', views.run_celery_task, name='celery_task'),
 ]

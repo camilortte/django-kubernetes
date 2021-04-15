@@ -1,8 +1,9 @@
 #!/bin/bash
-
+echo "APP_MODE " $APP_MODE
 if [[ $APP_MODE == "api" ]]
 then
     echo "Running in api mode"
+    ls
     python manage.py runserver 0.0.0.0:8080
     # django-admin startproject app .
     # python manage.py migrate 
@@ -19,10 +20,10 @@ then
       echo "PostgreSQL started"
   fi
 
-elif [[ $APP_MODE == "worker" ]]
+elif [[ $APP_MODE == "celery" ]]
 then
     echo "Running in worker mode";
-    celery -A django_web worker -c 4 -l info
+    celery -A app worker -c 4 -l info
 elif [[ $APP_MODE == "scheduler" ]]
 then
     echo "Running in scheduler mode";

@@ -1,6 +1,8 @@
 import json
 from django.http import HttpResponse
 from django.core.cache import cache
+from datetime import datetime
+from .tasks import hello_task
 
 KEY = 'caca'
 
@@ -23,4 +25,13 @@ def get_from_redis(request):
         "message": "OK",
         "data": cache.get(KEY)
     }    
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+def run_celery_task(request):
+    now = datetime.now()    
+    hello_task.delay(data=now)
+    response_data ={
+        "message": "OK"
+    }
     return HttpResponse(json.dumps(response_data), content_type="application/json")
