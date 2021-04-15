@@ -4,7 +4,7 @@ metadata:
   name: app-dummy
 spec:
   selector:
-    app: app-dummy
+    app: app-dummy-web
   type: NodePort
   ports:
   - port: 8080
