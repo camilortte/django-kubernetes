@@ -21,7 +21,9 @@ spec:
               name: app-dummy-config-map
               key: WEB_APP_MODE
         - name: REDIS_HOST
-          value: redis-host
+          value: redis-service
+        - name: TEST
+          value: holi
         image: camilortte/djangotestkubernetes:latest
         resources:
           limits:
