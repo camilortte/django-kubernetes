@@ -19,7 +19,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: app-dummy-config-map
-              key: CELERY_APP_MODE
+              key: SCHEDULER_APP_MODE
         - name: REDIS_HOST
           value: redis-service
         image: camilortte/djangotestkubernetes:latest

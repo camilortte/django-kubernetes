@@ -17,9 +17,11 @@ from . import views
 from django.contrib import admin
 from django.urls import path
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('save-in-redis', views.create_in_redis, name='create_in_redis'),
     path('get-from-redis', views.get_from_redis, name='get_from_redis'),
     path('celery-task', views.run_celery_task, name='celery_task'),
+    path('postgres-data', views.get_postres_info_tables, name='postgres_data'),
 ]

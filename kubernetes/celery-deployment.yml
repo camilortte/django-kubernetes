@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: app-dummy-celery
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
@@ -19,11 +19,11 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: app-dummy-config-map
-              key: SCHEDULER_APP_MODE
+              key: CELERY_APP_MODE
         - name: REDIS_HOST
           value: redis-service
         image: camilortte/djangotestkubernetes:latest
         resources:
           limits:
-            memory: "128Mi"
+            memory: "512Mi"
             cpu: "500m"

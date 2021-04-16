@@ -15,9 +15,16 @@ spec:
       containers:
       - name: redis
         image: redis:alpine        
+        volumeMounts:
+          - name: redis-data
+            mountPath: /data
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 6379
+          - containerPort: 6379
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-pv-volume-claim

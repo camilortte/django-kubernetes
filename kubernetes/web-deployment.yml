@@ -20,14 +20,34 @@ spec:
             configMapKeyRef:
               name: app-dummy-config-map
               key: WEB_APP_MODE
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: app-dummy-config-map
+              key: POSTGRES_HOST
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: app-dummy-config-map
+              key: POSTGRES_DB
         - name: REDIS_HOST
           value: redis-service
         - name: TEST
           value: holi
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: POSTGRES_PASSWORD
         image: camilortte/djangotestkubernetes:latest
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "1024Mi"
+            cpu: "2"
         ports:
         - containerPort: 8080

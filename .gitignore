@@ -1,3 +1,4 @@
 .app-dummy
 *.sqlite3
 celerybeat-schedule
+*.env

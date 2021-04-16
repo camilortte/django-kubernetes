@@ -3,8 +3,11 @@ from django.http import HttpResponse
 from django.core.cache import cache
 from datetime import datetime
 from .tasks import hello_task
+from django.db import connection
+
 
 KEY = 'caca'
+
 
 def create_in_redis(request):
     data = request.GET.get('data')
@@ -35,3 +38,14 @@ def run_celery_task(request):
         "message": "OK"
     }
     return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+def get_postres_info_tables(request):
+    data = []
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'")
+        for table in cursor.fetchall():
+          print(table)
+          data.append(table)
+    return HttpResponse(json.dumps(data), content_type="application/json")
+  

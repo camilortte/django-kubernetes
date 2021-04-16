@@ -3,12 +3,10 @@ echo "APP_MODE " $APP_MODE
 if [[ $APP_MODE == "api" ]]
 then
     echo "Running in api mode"
-    ls
-    python manage.py runserver 0.0.0.0:8080
-    # django-admin startproject app .
-    # python manage.py migrate 
-    # python manage.py collectstatic --noinput
-    # gunicorn django_web.wsgi:application --bind 0.0.0.0:8000 
+    # python manage.py runserver 0.0.0.0:8080
+    python manage.py migrate 
+    python manage.py collectstatic --noinput
+    gunicorn app.wsgi:application --bind 0.0.0.0:8080 
 
   if [ "$DATABASE" = "postgres" ]
   then
