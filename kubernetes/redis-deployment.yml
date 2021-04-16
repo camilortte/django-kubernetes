@@ -1,8 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: app-dummy-redis-deployment
 spec:
+  serviceName: "redis"
   selector:
     matchLabels:
       app: app-dummy-redis
@@ -12,6 +13,7 @@ spec:
       labels:
         app: app-dummy-redis
     spec:
+      terminationGracePeriodSeconds: 10
       containers:
       - name: redis
         image: redis:alpine        
