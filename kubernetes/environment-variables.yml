@@ -5,3 +5,4 @@ metadata:
 data:
   WEB_APP_MODE: api
   CELERY_APP_MODE: celery
+  SCHEDULER_APP_MODE: scheduler

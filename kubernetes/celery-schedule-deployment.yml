@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-dummy-celery
+  name: app-dummy-celery-beat
 spec:
   selector:
     matchLabels:
-      app: app-dummy-celery
+      app: app-dummy-celery-beat
   replicas: 1
   template:
     metadata:
       labels:
-        app: app-dummy-celery
+        app: app-dummy-celery-beat
     spec:
       containers:
-      - name: celery-scheduler
+      - name: celery
         env: 
         - name: APP_MODE
           valueFrom:
             configMapKeyRef:
               name: app-dummy-config-map
-              key: SCHEDULER_APP_MODE
+              key: CELERY_APP_MODE
         - name: REDIS_HOST
           value: redis-service
         image: camilortte/djangotestkubernetes:latest
         resources:
           limits:
-            memory: "128Mi"
+            memory: "512Mi"
             cpu: "500m"

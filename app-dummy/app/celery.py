@@ -17,3 +17,12 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 
+from celery.schedules import crontab
+
+app.conf.beat_schedule = {
+    'printing': {
+        'task': 'app.tasks.scheduler',
+        'schedule': crontab()
+    },
+}
+app.conf.timezone = 'UTC'

@@ -27,7 +27,7 @@ then
 elif [[ $APP_MODE == "scheduler" ]]
 then
     echo "Running in scheduler mode";
-    celery -A django_web beat
+    celery -A app beat
 else
     echo "No mode selected";
 fi
