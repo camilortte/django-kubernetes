@@ -1,8 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: app-dummy-postgres-deployment
 spec:
+  serviceName: "postgres"
   selector:
     matchLabels:
       app:  app-dummy-postgres
@@ -12,6 +13,7 @@ spec:
       labels:
         app: app-dummy-postgres
     spec:
+      terminationGracePeriodSeconds: 10
       containers:
         - name: postgres
           image: postgres:latest
