@@ -48,6 +48,12 @@ spec:
         resources:
           limits:
             memory: "1024Mi"
-            cpu: "2"
+            cpu: "4"
         ports:
-        - containerPort: 8080
+          - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 3
+          periodSeconds: 3  

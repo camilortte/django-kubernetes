@@ -5,7 +5,7 @@ then
     echo "Running in api mode"
     python manage.py migrate 
     python manage.py collectstatic --noinput
-    gunicorn app.wsgi:application --bind 0.0.0.0:8080 --log-level=debug
+    gunicorn app.wsgi:application --bind 0.0.0.0:8080 --worker-class eventlet  --log-level=debug
   if [ "$DATABASE" = "postgres" ]
   then
       echo "Waiting for postgres..."

@@ -48,4 +48,8 @@ def get_postres_info_tables(request):
           print(table)
           data.append(table)
     return HttpResponse(json.dumps(data), content_type="application/json")
+
+
+def health(request):
+    return HttpResponse(json.dumps({'status': 'OK'}}), content_type="application/json")
   

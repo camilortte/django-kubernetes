@@ -24,4 +24,6 @@ urlpatterns = [
     path('get-from-redis', views.get_from_redis, name='get_from_redis'),
     path('celery-task', views.run_celery_task, name='celery_task'),
     path('postgres-data', views.get_postres_info_tables, name='postgres_data'),
+
+    path('health', views.health, name='health'),
 ]
