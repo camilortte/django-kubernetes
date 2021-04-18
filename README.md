@@ -36,6 +36,12 @@ $ kubectl apply -f kuberntes/.
 $ kubectl get all
 ```
 
+## Secreats
+```
+$ cp kubernetes/.secrets.env.example kubernetes/.secrets.env
+$ kubectl create secret generic app-secrets --from-env-file=kubernetes/.secrests.env
+```
+
 # Minikube easy commands
 ```
 $ minikube start
