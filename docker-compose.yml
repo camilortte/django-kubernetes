@@ -1,26 +1,18 @@
 version: "3.9"
    
 services:
-  # db:
-  #   image: postgres
-  #   volumes:
-  #     - ./data/db:/var/lib/postgresql/data
-  #   environment:
-  #     - POSTGRES_DB=postgres
-  #     - POSTGRES_USER=postgres
-  #     - POSTGRES_PASSWORD=postgres
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
 
   redis:
     image: "redis:alpine"
-
-  #nginx-web:
-  #  image: "nginx:1.19.0-alpine"
-  #  depends_on:
-  #    - web
-  #  volumes:
-  #    - ./conf/etc/nginx:/etc/nginx/conf.d
-  #  ports:
-  #    - "8080:80"
 
   web:
     build: .
